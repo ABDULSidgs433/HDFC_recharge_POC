@@ -48,19 +48,20 @@ void main() {
 
       widgetTester.printToConsole("Tapped on submit button");
 // -------------------------- take screenshot 1 -------------------
-      try {
-        await integrationDriver(
-          onScreenshot:
-              (String screenshotName, List<int> screenshotBytes) async {
-            final File image = await File('screenshots/screenshot1.png')
-                .create(recursive: true);
-            image.writeAsBytesSync(screenshotBytes);
-            return true;
-          },
-        );
-      } catch (e) {
-        print('Error occured: $e');
-      }
+      // try {
+      //   await integrationDriver(
+      //     onScreenshot:
+      //         (String screenshotName, List<int> screenshotBytes) async {
+      //       final File image = await File('screenshots/screenshot1.png')
+      //           .create(recursive: true);
+      //       image.writeAsBytesSync(screenshotBytes);
+      //       return true;
+      //     },
+      //   );
+      // } catch (e) {
+      //   print('Error occured: $e');
+      // }
+      await binding.takeScreenshot('screenshot1.png');
 // ----------------------------- take screenshot 1 -------------------
 
       await widgetTester.pumpAndSettle(Duration(seconds: 2));
@@ -78,19 +79,20 @@ void main() {
       await widgetTester.tap(fastagBtn);
 
       // -------------------------- take screenshot 2 -------------------
-      try {
-        await integrationDriver(
-          onScreenshot:
-              (String screenshotName, List<int> screenshotBytes) async {
-            final File image = await File('screenshots/screenshot2.png')
-                .create(recursive: true);
-            image.writeAsBytesSync(screenshotBytes);
-            return true;
-          },
-        );
-      } catch (e) {
-        print('Error occured: $e');
-      }
+      // try {
+      //   await integrationDriver(
+      //     onScreenshot:
+      //         (String screenshotName, List<int> screenshotBytes) async {
+      //       final File image = await File('screenshots/screenshot2.png')
+      //           .create(recursive: true);
+      //       image.writeAsBytesSync(screenshotBytes);
+      //       return true;
+      //     },
+      //   );
+      // } catch (e) {
+      //   print('Error occured: $e');
+      // }
+      await binding.takeScreenshot('screenshot2.png');
 // ----------------------------- take screenshot 2 -------------------
 
       await widgetTester.pumpAndSettle(Duration(seconds: 3));
@@ -144,19 +146,20 @@ void main() {
       await widgetTester.pumpAndSettle();
 
       // -------------------------- take screenshot 3 -------------------
-      try {
-        await integrationDriver(
-          onScreenshot:
-              (String screenshotName, List<int> screenshotBytes) async {
-            final File image = await File('screenshots/screenshot3.png')
-                .create(recursive: true);
-            image.writeAsBytesSync(screenshotBytes);
-            return true;
-          },
-        );
-      } catch (e) {
-        print('Error occured: $e');
-      }
+      // try {
+      //   await integrationDriver(
+      //     onScreenshot:
+      //         (String screenshotName, List<int> screenshotBytes) async {
+      //       final File image = await File('screenshots/screenshot3.png')
+      //           .create(recursive: true);
+      //       image.writeAsBytesSync(screenshotBytes);
+      //       return true;
+      //     },
+      //   );
+      // } catch (e) {
+      //   print('Error occured: $e');
+      // }
+      await binding.takeScreenshot('screenshot3.png');
 // ----------------------------- take screenshot 3 -------------------
 
       await widgetTester.pumpAndSettle(Duration(seconds: 2));
@@ -165,19 +168,20 @@ void main() {
       await widgetTester.tap(reviewConfirmBtn);
 
       // -------------------------- take screenshot 4 -------------------
-      try {
-        await integrationDriver(
-          onScreenshot:
-              (String screenshotName, List<int> screenshotBytes) async {
-            final File image = await File('screenshots/screenshot4.png')
-                .create(recursive: true);
-            image.writeAsBytesSync(screenshotBytes);
-            return true;
-          },
-        );
-      } catch (e) {
-        print('Error occured: $e');
-      }
+      // try {
+      //   await integrationDriver(
+      //     onScreenshot:
+      //         (String screenshotName, List<int> screenshotBytes) async {
+      //       final File image = await File('screenshots/screenshot4.png')
+      //           .create(recursive: true);
+      //       image.writeAsBytesSync(screenshotBytes);
+      //       return true;
+      //     },
+      //   );
+      // } catch (e) {
+      //   print('Error occured: $e');
+      // }
+      await binding.takeScreenshot('screenshot4.png');
 // ----------------------------- take screenshot 4 -------------------
 
       await Future.delayed(Duration(seconds: 2));
@@ -189,19 +193,20 @@ void main() {
       String storedOTP = FFAppState().authOtp as String;
       await widgetTester.enterText(otpTextEditingCtrl, "$storedOTP");
       // -------------------------- take screenshot 5 -------------------
-      try {
-        await integrationDriver(
-          onScreenshot:
-              (String screenshotName, List<int> screenshotBytes) async {
-            final File image = await File('screenshots/screenshot5.png')
-                .create(recursive: true);
-            image.writeAsBytesSync(screenshotBytes);
-            return true;
-          },
-        );
-      } catch (e) {
-        print('Error occured: $e');
-      }
+      // try {
+      //   await integrationDriver(
+      //     onScreenshot:
+      //         (String screenshotName, List<int> screenshotBytes) async {
+      //       final File image = await File('screenshots/screenshot5.png')
+      //           .create(recursive: true);
+      //       image.writeAsBytesSync(screenshotBytes);
+      //       return true;
+      //     },
+      //   );
+      // } catch (e) {
+      //   print('Error occured: $e');
+      // }
+      await binding.takeScreenshot('screenshot5.png');
 // ----------------------------- take screenshot 5 -------------------
 
       await Future.delayed(Duration(seconds: 3));
@@ -210,20 +215,20 @@ void main() {
       final Finder confirmAndPayBtn = find.byKey(ValueKey('authotpBTNKey'));
       await widgetTester.tap(confirmAndPayBtn);
       // -------------------------- take screenshot 6 -------------------
-      try {
-        await integrationDriver(
-          onScreenshot:
-              (String screenshotName, List<int> screenshotBytes) async {
-            final File image = await File('screenshots/screenshot6.png')
-                .create(recursive: true);
-            image.writeAsBytesSync(screenshotBytes);
-            return true;
-          },
-        );
-      } catch (e) {
-        print('Error occured: $e');
-      }
-
+      // try {
+      //   await integrationDriver(
+      //     onScreenshot:
+      //         (String screenshotName, List<int> screenshotBytes) async {
+      //       final File image = await File('screenshots/screenshot6.png')
+      //           .create(recursive: true);
+      //       image.writeAsBytesSync(screenshotBytes);
+      //       return true;
+      //     },
+      //   );
+      // } catch (e) {
+      //   print('Error occured: $e');
+      // }
+      await binding.takeScreenshot('screenshot6.png');
 // ----------------------------- take screenshot 6 -------------------
 
       await widgetTester.pumpAndSettle();
