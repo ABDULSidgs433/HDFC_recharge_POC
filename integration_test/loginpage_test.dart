@@ -223,6 +223,7 @@ void main() {
       } catch (e) {
         print('Error occured: $e');
       }
+
 // ----------------------------- take screenshot 6 -------------------
 
       await widgetTester.pumpAndSettle();
