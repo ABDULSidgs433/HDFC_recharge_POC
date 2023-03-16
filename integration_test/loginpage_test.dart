@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -18,10 +19,12 @@ void main() {
     final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
     testWidgets("Recharge POC Login screen Testing", (widgetTester) async {
-      await binding.convertFlutterSurfaceToImage();
       // Setup the finder and assian the value
       widgetTester.printToConsole("Flutter Integration testing started");
       app.main();
+      print('starting integration testing....');
+
+      await binding.convertFlutterSurfaceToImage();
 
       final Finder customeridCtrlVal = find.byKey(Key('custidCtrlKey'));
 
@@ -43,25 +46,16 @@ void main() {
       await widgetTester.enterText(customerPswdVal, '123456');
       widgetTester.printToConsole("Entered cust password");
 
-      await widgetTester.pumpAndSettle(Duration(seconds: 2));
+      await widgetTester.pumpAndSettle(Duration(seconds: 1));
       await widgetTester.tap(submitButton);
 
       widgetTester.printToConsole("Tapped on submit button");
+      // print("login submit button tapped");
 // -------------------------- take screenshot 1 -------------------
-      // try {
-      //   await integrationDriver(
-      //     onScreenshot:
-      //         (String screenshotName, List<int> screenshotBytes) async {
-      //       final File image = await File('screenshots/screenshot1.png')
-      //           .create(recursive: true);
-      //       image.writeAsBytesSync(screenshotBytes);
-      //       return true;
-      //     },
-      //   );
-      // } catch (e) {
-      //   print('Error occured: $e');
-      // }
-      await binding.takeScreenshot('screenshot1.png');
+
+      await widgetTester.pumpAndSettle();
+      await binding.takeScreenshot('screenshot1');
+
 // ----------------------------- take screenshot 1 -------------------
 
       await widgetTester.pumpAndSettle(Duration(seconds: 2));
@@ -74,28 +68,14 @@ void main() {
 
       final Finder fastagBtn = find.byKey(Key('fastagkey'));
 
-      await widgetTester.pumpAndSettle(Duration(seconds: 3));
+      await widgetTester.pumpAndSettle(Duration(seconds: 2));
 
       await widgetTester.tap(fastagBtn);
 
       // -------------------------- take screenshot 2 -------------------
-      // try {
-      //   await integrationDriver(
-      //     onScreenshot:
-      //         (String screenshotName, List<int> screenshotBytes) async {
-      //       final File image = await File('screenshots/screenshot2.png')
-      //           .create(recursive: true);
-      //       image.writeAsBytesSync(screenshotBytes);
-      //       return true;
-      //     },
-      //   );
-      // } catch (e) {
-      //   print('Error occured: $e');
-      // }
-      await binding.takeScreenshot('screenshot2.png');
+      await widgetTester.pumpAndSettle(Duration(seconds: 2));
+      await binding.takeScreenshot('screenshot2');
 // ----------------------------- take screenshot 2 -------------------
-
-      await widgetTester.pumpAndSettle(Duration(seconds: 3));
 
       expect(find.text('Select below options to proceed with recharge'),
           findsOneWidget);
@@ -143,23 +123,12 @@ void main() {
       final Finder submitBtn = find.text('Submit');
 
       await widgetTester.tap(submitBtn);
-      await widgetTester.pumpAndSettle();
 
       // -------------------------- take screenshot 3 -------------------
-      // try {
-      //   await integrationDriver(
-      //     onScreenshot:
-      //         (String screenshotName, List<int> screenshotBytes) async {
-      //       final File image = await File('screenshots/screenshot3.png')
-      //           .create(recursive: true);
-      //       image.writeAsBytesSync(screenshotBytes);
-      //       return true;
-      //     },
-      //   );
-      // } catch (e) {
-      //   print('Error occured: $e');
-      // }
-      await binding.takeScreenshot('screenshot3.png');
+
+      await binding.takeScreenshot('screenshot3');
+      await widgetTester.pumpAndSettle();
+
 // ----------------------------- take screenshot 3 -------------------
 
       await widgetTester.pumpAndSettle(Duration(seconds: 2));
@@ -168,23 +137,10 @@ void main() {
       await widgetTester.tap(reviewConfirmBtn);
 
       // -------------------------- take screenshot 4 -------------------
-      // try {
-      //   await integrationDriver(
-      //     onScreenshot:
-      //         (String screenshotName, List<int> screenshotBytes) async {
-      //       final File image = await File('screenshots/screenshot4.png')
-      //           .create(recursive: true);
-      //       image.writeAsBytesSync(screenshotBytes);
-      //       return true;
-      //     },
-      //   );
-      // } catch (e) {
-      //   print('Error occured: $e');
-      // }
-      await binding.takeScreenshot('screenshot4.png');
+      await Future.delayed(Duration(seconds: 2));
+      await binding.takeScreenshot('screenshot4');
 // ----------------------------- take screenshot 4 -------------------
 
-      await Future.delayed(Duration(seconds: 2));
       await widgetTester.pump();
 
       final Finder otpTextEditingCtrl = find.byKey(Key('otpCtrlKey'));
@@ -192,43 +148,21 @@ void main() {
       await widgetTester.pump();
       String storedOTP = FFAppState().authOtp as String;
       await widgetTester.enterText(otpTextEditingCtrl, "$storedOTP");
+
       // -------------------------- take screenshot 5 -------------------
-      // try {
-      //   await integrationDriver(
-      //     onScreenshot:
-      //         (String screenshotName, List<int> screenshotBytes) async {
-      //       final File image = await File('screenshots/screenshot5.png')
-      //           .create(recursive: true);
-      //       image.writeAsBytesSync(screenshotBytes);
-      //       return true;
-      //     },
-      //   );
-      // } catch (e) {
-      //   print('Error occured: $e');
-      // }
-      await binding.takeScreenshot('screenshot5.png');
+
+      await Future.delayed(Duration(seconds: 2));
+      final Finder confirmAndPayBtn = find.byKey(ValueKey('authotpBTNKey'));
+      await binding.takeScreenshot('screenshot5');
+      await widgetTester.tap(confirmAndPayBtn);
+
 // ----------------------------- take screenshot 5 -------------------
 
-      await Future.delayed(Duration(seconds: 3));
+      await widgetTester.pumpAndSettle(Duration(seconds: 2));
 
-      // await widgetTester.pumpAndSettle(Duration(seconds: 2));
-      final Finder confirmAndPayBtn = find.byKey(ValueKey('authotpBTNKey'));
-      await widgetTester.tap(confirmAndPayBtn);
       // -------------------------- take screenshot 6 -------------------
-      // try {
-      //   await integrationDriver(
-      //     onScreenshot:
-      //         (String screenshotName, List<int> screenshotBytes) async {
-      //       final File image = await File('screenshots/screenshot6.png')
-      //           .create(recursive: true);
-      //       image.writeAsBytesSync(screenshotBytes);
-      //       return true;
-      //     },
-      //   );
-      // } catch (e) {
-      //   print('Error occured: $e');
-      // }
-      await binding.takeScreenshot('screenshot6.png');
+
+      await binding.takeScreenshot('screenshot6');
 // ----------------------------- take screenshot 6 -------------------
 
       await widgetTester.pumpAndSettle();
