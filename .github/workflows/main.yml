@@ -17,8 +17,8 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Run Chromedriver on port= 4444
-        run: chromedriver --port=4444
+      # - name: Run Chromedriver on port= 4444
+      #   run: chromedriver --port=4444
       
       - name: Run integration tests
         run: flutter drive \  --driver=test_driver/integration_test.dart \  --target=integration_test/loginpage_test.dart \  -d web-server
