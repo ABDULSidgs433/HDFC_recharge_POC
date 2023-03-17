@@ -9,9 +9,10 @@ void main() {
   // final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized()
   //     as IntegrationTestWidgetsFlutterBinding;
 
-  group("E2E Testing for HDFC Recharge POC", () {
+  group("E2E Testing for HDFC Recharge POC", () async {
     // WidgetsFlutterBinding.ensureInitialized();
-    final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+
+    IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
     testWidgets("Recharge POC Login screen Testing", (widgetTester) async {
       // Setup the finder and assian the value
@@ -19,7 +20,7 @@ void main() {
       app.main();
       print('starting integration testing....');
 
-      await binding.convertFlutterSurfaceToImage();
+      // await binding.convertFlutterSurfaceToImage();
 
       final Finder customeridCtrlVal = find.byKey(Key('custidCtrlKey'));
 
