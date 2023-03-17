@@ -47,16 +47,16 @@ void main() {
       widgetTester.printToConsole("Entered cust password");
 
       await widgetTester.pumpAndSettle(Duration(seconds: 1));
-      await widgetTester.tap(submitButton);
-
-      widgetTester.printToConsole("Tapped on submit button");
-      // print("login submit button tapped");
-// -------------------------- take screenshot 1 -------------------
+      // -------------------------- take screenshot 1 -------------------
 
       await widgetTester.pumpAndSettle();
       await binding.takeScreenshot('screenshot1');
 
 // ----------------------------- take screenshot 1 -------------------
+      await widgetTester.tap(submitButton);
+
+      widgetTester.printToConsole("Tapped on submit button");
+      // print("login submit button tapped");
 
       await widgetTester.pumpAndSettle(Duration(seconds: 2));
       expect(find.text('Welcome to the Dashboard'), findsOneWidget);
@@ -69,13 +69,12 @@ void main() {
       final Finder fastagBtn = find.byKey(Key('fastagkey'));
 
       await widgetTester.pumpAndSettle(Duration(seconds: 2));
-
-      await widgetTester.tap(fastagBtn);
-
       // -------------------------- take screenshot 2 -------------------
       await widgetTester.pumpAndSettle(Duration(seconds: 2));
       await binding.takeScreenshot('screenshot2');
 // ----------------------------- take screenshot 2 -------------------
+
+      await widgetTester.tap(fastagBtn);
 
       expect(find.text('Select below options to proceed with recharge'),
           findsOneWidget);
@@ -96,8 +95,6 @@ void main() {
 
       await widgetTester.tap(selecteWalletDropdown);
       await widgetTester.pumpAndSettle();
-
-      widgetTester.printToConsole("");
 
       final Finder finderWalletItem = find
           .byWidgetPredicate(

@@ -1,0 +1,35 @@
+name: Flutter Recharge POC (flutter web integration test) 
+on:
+  pull_request:
+    branches: ["recharge-poc-dev"]
+  push:
+    branches: ["recharge-poc-dev"]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run Chromedriver on port= 4444
+        run: chromedriver --port=4444
+      
+      - name: Run integration tests
+        run: flutter drive \  --driver=test_driver/integration_test.dart \  --target=integration_test/loginpage_test.dart \  -d web-server
+
+      - name: Check for success test
+        run: |
+          if grep -q "All tests passed!" integration_test/test_results.json; then
+            echo "Success test: All tests passed!"
+          else
+            echo "Error test: Tests failed."
+            exit 1
+          fi
+
+      
