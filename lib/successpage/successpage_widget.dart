@@ -85,6 +85,7 @@ class _SuccesspageWidgetState extends State<SuccesspageWidget> {
                     width: double.infinity,
                     height: double.infinity,
                     child: custom_widgets.ConfettiOverlay(
+                      key: Key('ConfettiOverlayKey'),
                       width: double.infinity,
                       height: double.infinity,
                       loop: false,
