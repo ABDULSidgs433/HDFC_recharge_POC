@@ -1,13 +1,8 @@
-import 'dart:io';
-import 'dart:typed_data';
-
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:integration_test/integration_test_driver_extended.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:recharge_p_o_c/app_state.dart';
-import 'package:recharge_p_o_c/flutter_flow/flutter_flow_drop_down.dart';
 import 'package:recharge_p_o_c/main.dart' as app;
 
 void main() {
@@ -54,7 +49,7 @@ void main() {
 // -------------------------- take screenshot 1 -------------------
 
       await widgetTester.pumpAndSettle();
-      await binding.takeScreenshot('screenshot1');
+      // await binding.takeScreenshot('screenshot1');
 
 // ----------------------------- take screenshot 1 -------------------
 
@@ -74,7 +69,7 @@ void main() {
 
       // -------------------------- take screenshot 2 -------------------
       await widgetTester.pumpAndSettle(Duration(seconds: 2));
-      await binding.takeScreenshot('screenshot2');
+      // await binding.takeScreenshot('screenshot2');
 // ----------------------------- take screenshot 2 -------------------
 
       expect(find.text('Select below options to proceed with recharge'),
@@ -117,7 +112,7 @@ void main() {
 
       final Finder accItem = find.text('10000123500001').first;
       await widgetTester.pump();
-      await widgetTester.tap(accItem.first);
+      await widgetTester.tap(accItem);
       await widgetTester.pumpAndSettle();
 
       final Finder submitBtn = find.text('Submit');
@@ -126,7 +121,7 @@ void main() {
 
       // -------------------------- take screenshot 3 -------------------
 
-      await binding.takeScreenshot('screenshot3');
+      // await binding.takeScreenshot('screenshot3');
       await widgetTester.pumpAndSettle();
 
 // ----------------------------- take screenshot 3 -------------------
@@ -138,7 +133,7 @@ void main() {
 
       // -------------------------- take screenshot 4 -------------------
       await Future.delayed(Duration(seconds: 2));
-      await binding.takeScreenshot('screenshot4');
+      // await binding.takeScreenshot('screenshot4');
 // ----------------------------- take screenshot 4 -------------------
 
       await widgetTester.pump();
@@ -146,26 +141,38 @@ void main() {
       final Finder otpTextEditingCtrl = find.byKey(Key('otpCtrlKey'));
 
       await widgetTester.pump();
-      String storedOTP = FFAppState().authOtp as String;
+      String storedOTP = FFAppState().authOtp;
       await widgetTester.enterText(otpTextEditingCtrl, "$storedOTP");
 
       // -------------------------- take screenshot 5 -------------------
 
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(Duration(seconds: 1));
       final Finder confirmAndPayBtn = find.byKey(ValueKey('authotpBTNKey'));
-      await binding.takeScreenshot('screenshot5');
+      // await binding.takeScreenshot('screenshot5');
       await widgetTester.tap(confirmAndPayBtn);
 
 // ----------------------------- take screenshot 5 -------------------
 
-      await widgetTester.pumpAndSettle(Duration(seconds: 2));
-
       // -------------------------- take screenshot 6 -------------------
 
-      await binding.takeScreenshot('screenshot6');
+      // await binding.takeScreenshot('screenshot6');
 // ----------------------------- take screenshot 6 -------------------
 
+      expect(find.text('Wallet Recharge  Done Successfully'), findsOneWidget);
       await widgetTester.pumpAndSettle();
+
+      final confettiWidget = find
+          .byKey(ValueKey('ConfettiOverlayKey'))
+          .evaluate()
+          .first
+          .widget as ConfettiWidget;
+
+      // Wait for the confetti animation to complete
+      await widgetTester.pumpAndSettle(const Duration(seconds: 8));
+
+      // Dispose of the controller
+      confettiWidget.confettiController.dispose();
+
       // await widgetTester.pumpAndSettle();
       // Recharge POC DashBoard Test cases:
     });
