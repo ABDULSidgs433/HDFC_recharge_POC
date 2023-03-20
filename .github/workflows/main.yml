@@ -16,13 +16,16 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: Flutter doctor run
+        run: flutter doctor
         
 
       - name: Run integration tests
-        run: flutter drive --driver=test_driver\integration_test.dart --target=integration_test\loginpage_test.dart -d chrome -v
+        run: flutter drive --driver=test_driver\integration_test.dart --target=integration_test\loginpage_test.dart -d chrome --web-port=4444 --browser-name=chrome
         
-      - name: Run chromedriver
-        run: .\chromedriver.exe --port=4444 --disable-gpu
+      # - name: Run chromedriver
+      #   run: .\chromedriver.exe --port=4444 --disable-gpu
         
       - name: Check for success test
         run: |
