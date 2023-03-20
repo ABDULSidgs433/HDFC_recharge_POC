@@ -6,13 +6,8 @@ import 'package:recharge_p_o_c/app_state.dart';
 import 'package:recharge_p_o_c/main.dart' as app;
 
 void main() {
-  // final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized()
-  //     as IntegrationTestWidgetsFlutterBinding;
-
-  group("E2E Testing for HDFC Recharge POC", () async {
-    // WidgetsFlutterBinding.ensureInitialized();
-
-    IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  group("E2E Testing for HDFC Recharge POC", () {
+    final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
     testWidgets("Recharge POC Login screen Testing", (widgetTester) async {
       // Setup the finder and assian the value
@@ -45,11 +40,11 @@ void main() {
       await widgetTester.pumpAndSettle(Duration(seconds: 1));
       // -------------------------- take screenshot 1 -------------------
 
-      await widgetTester.pumpAndSettle();
       // await binding.takeScreenshot('screenshot1');
 
 // ----------------------------- take screenshot 1 -------------------
       await widgetTester.tap(submitButton);
+      await widgetTester.pumpAndSettle();
 
       widgetTester.printToConsole("Tapped on submit button");
       // print("login submit button tapped");
@@ -71,16 +66,15 @@ void main() {
 // ----------------------------- take screenshot 2 -------------------
 
       await widgetTester.tap(fastagBtn);
+      await widgetTester.pumpAndSettle(Duration(seconds: 1));
 
-      expect(find.text('Select below options to proceed with recharge'),
-          findsOneWidget);
-
-      await widgetTester.pumpAndSettle(Duration(seconds: 3));
+      expect(find.text('Select To Recharge'), findsOneWidget);
+      await widgetTester.pumpAndSettle(Duration(seconds: 1));
 
       //Select Recharge Options vehicle or wallet recharge
       final Finder selectWalletRecharge = find.byKey(Key('walletrechargekey'));
-      final Finder selectVehicleRecharge =
-          find.byKey(Key('vehiclerechargekey'));
+      // final Finder selectVehicleRecharge =
+      //     find.byKey(Key('vehiclerechargekey'));
 
       //Go with wallet recharge
       await widgetTester.pumpAndSettle(Duration(seconds: 2));
@@ -101,7 +95,7 @@ void main() {
       await widgetTester.pumpAndSettle();
 
       final Finder amtCtrl = find.byType(TextFormField).last;
-      await widgetTester.enterText(amtCtrl, "2000");
+      await widgetTester.enterText(amtCtrl, "1520");
       await widgetTester.pumpAndSettle();
 
       final Finder selecAccDropdown = find.text('Select Your Account');
@@ -155,21 +149,21 @@ void main() {
 
       // await binding.takeScreenshot('screenshot6');
 // ----------------------------- take screenshot 6 -------------------
-
-      expect(find.text('Wallet Recharge  Done Successfully'), findsOneWidget);
       await widgetTester.pumpAndSettle();
+      expect(find.text('Payment Confirmed!'), findsOneWidget);
+      // await widgetTester.pumpAndSettle();
 
-      final confettiWidget = find
-          .byKey(ValueKey('ConfettiOverlayKey'))
-          .evaluate()
-          .first
-          .widget as ConfettiWidget;
+      // final confettiWidget = find
+      //     .byKey(ValueKey('ConfettiOverlayKey'))
+      //     .evaluate()
+      //     .first
+      //     .widget as ConfettiWidget;
 
-      // Wait for the confetti animation to complete
-      await widgetTester.pumpAndSettle(const Duration(seconds: 8));
+      // // Wait for the confetti animation to complete
+      // await widgetTester.pumpAndSettle(const Duration(seconds: 1));
 
       // Dispose of the controller
-      confettiWidget.confettiController.dispose();
+      // confettiWidget.confettiController.dispose();
 
       // await widgetTester.pumpAndSettle();
       // Recharge POC DashBoard Test cases:
