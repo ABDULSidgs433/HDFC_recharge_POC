@@ -22,7 +22,7 @@ jobs:
         
 
       - name: Run integration tests
-        run: flutter drive --driver=test_driver\integration_test.dart --target=integration_test\loginpage_test.dart -d chrome --web-port=4444 --browser-name=chrome
+        run: chromedriver --port=4444 --verbose & flutter drive   --driver=test_driver/integration_test.dart   --target=integration_test/loginpage_test.dart   -d web-server
         
       # - name: Run chromedriver
       #   run: .\chromedriver.exe --port=4444 --disable-gpu
