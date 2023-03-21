@@ -127,10 +127,10 @@ void main() {
         await widgetTester.tap(reviewConfirmBtn);
 
         // -------------------------- take screenshot 4 -------------------
-        await Future.delayed(Duration(seconds: 2));
-        await binding.convertFlutterSurfaceToImage();
-        await widgetTester.pumpAndSettle();
-        await binding.takeScreenshot('screenshot4');
+        // await Future.delayed(Duration(seconds: 2));
+        // await binding.convertFlutterSurfaceToImage();
+        // await widgetTester.pumpAndSettle();
+        // await binding.takeScreenshot('screenshot4');
 // ----------------------------- take screenshot 4 -------------------
 
         // final Finder otpTextEditingCtrl = find.byKey(Key('otpCtrlKey'));
