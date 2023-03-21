@@ -1,8 +1,6 @@
-import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:recharge_p_o_c/app_state.dart';
 import 'package:recharge_p_o_c/main.dart' as app;
 
 void main() {
@@ -37,9 +35,9 @@ void main() {
 
         await widgetTester.pumpAndSettle(Duration(seconds: 1));
         // -------------------------- take screenshot 1 -------------------
-        // await binding.convertFlutterSurfaceToImage();
-        // await widgetTester.pumpAndSettle();
-        // await binding.takeScreenshot('screenshot1');
+        await binding.convertFlutterSurfaceToImage();
+        await widgetTester.pumpAndSettle();
+        await binding.takeScreenshot('screenshot1');
 
 // ----------------------------- take screenshot 1 -------------------
         await widgetTester.tap(submitButton);
@@ -62,9 +60,9 @@ void main() {
         await widgetTester.pumpAndSettle(Duration(seconds: 2));
         // -------------------------- take screenshot 2 -------------------
         await widgetTester.pumpAndSettle(Duration(seconds: 2));
-        // await binding.convertFlutterSurfaceToImage();
-        // await widgetTester.pumpAndSettle();
-        // await binding.takeScreenshot('screenshot2');
+        await binding.convertFlutterSurfaceToImage();
+        await widgetTester.pumpAndSettle();
+        await binding.takeScreenshot('screenshot2');
 // ----------------------------- take screenshot 2 -------------------
 
         await widgetTester.tap(fastagBtn);
@@ -115,24 +113,24 @@ void main() {
         await widgetTester.tap(submitBtn);
 
         // -------------------------- take screenshot 3 -------------------
-        // await binding.convertFlutterSurfaceToImage();
-        // await widgetTester.pumpAndSettle();
-        // await binding.takeScreenshot('screenshot3');
+        await binding.convertFlutterSurfaceToImage();
+        await widgetTester.pumpAndSettle();
+        await binding.takeScreenshot('screenshot3');
         await widgetTester.pumpAndSettle();
         expect(find.text('Review'), findsOneWidget);
 
 // ----------------------------- take screenshot 3 -------------------
 
-        // await widgetTester.pumpAndSettle(Duration(seconds: 2));
+        await widgetTester.pumpAndSettle(Duration(seconds: 2));
 
-        // final Finder reviewConfirmBtn = find.text('Confirm & Pay');
-        // await widgetTester.tap(reviewConfirmBtn);
+        final Finder reviewConfirmBtn = find.text('Confirm & Pay');
+        await widgetTester.tap(reviewConfirmBtn);
 
         // -------------------------- take screenshot 4 -------------------
-        // await Future.delayed(Duration(seconds: 2));
-        // await binding.convertFlutterSurfaceToImage();
-        // await widgetTester.pumpAndSettle();
-        // await binding.takeScreenshot('screenshot4');
+        await Future.delayed(Duration(seconds: 2));
+        await binding.convertFlutterSurfaceToImage();
+        await widgetTester.pumpAndSettle();
+        await binding.takeScreenshot('screenshot4');
 // ----------------------------- take screenshot 4 -------------------
 
         // final Finder otpTextEditingCtrl = find.byKey(Key('otpCtrlKey'));
