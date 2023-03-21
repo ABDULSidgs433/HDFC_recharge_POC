@@ -26,6 +26,12 @@ jobs:
         env:
           SCREENSHOTS_DIR: ${{ github.workspace }}/screenshots
           REPORTS_DIR: ${{ github.workspace }}/reports
+      
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: test_results
+          path: screenshots/
         
       # - name: Run chromedriver
       #   run: .\chromedriver.exe --port=4444 --disable-gpu
