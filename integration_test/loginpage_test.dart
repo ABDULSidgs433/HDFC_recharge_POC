@@ -16,6 +16,7 @@ void main() {
       app.main();
       print('starting integration testing....');
       try {
+        await binding.convertFlutterSurfaceToImage();
         final Finder customeridCtrlVal = find.byKey(Key('custidCtrlKey'));
 
         final Finder customerPswdVal = find.byKey(Key('pswdCtrlKey'));
@@ -23,23 +24,24 @@ void main() {
         final Finder submitButton = find.byKey(Key('submitBtnKey'));
 
         // await widgetTester.pumpWidget(LoginPageWidget());
-
         await widgetTester.pumpAndSettle();
 
         await widgetTester.tap(customeridCtrlVal);
+        await widgetTester.pumpAndSettle();
         await widgetTester.enterText(customeridCtrlVal, '123456');
         widgetTester.printToConsole("Entered custid");
 
         // await widgetTester.pumpAndSettle(Duration(seconds: 2));
 
         await widgetTester.tap(customerPswdVal);
+        await widgetTester.pumpAndSettle();
         await widgetTester.enterText(customerPswdVal, '123456');
         widgetTester.printToConsole("Entered cust password");
 
         // await widgetTester.pumpAndSettle(Duration(seconds: 1));
         // -------------------------- take screenshot 1 -------------------
-        await binding.convertFlutterSurfaceToImage();
-        await widgetTester.pumpAndSettle();
+
+        // await widgetTester.pumpAndSettle();
         await binding.takeScreenshot('screenshot1');
 
 // ----------------------------- take screenshot 1 -------------------
@@ -60,17 +62,15 @@ void main() {
 
         final Finder fastagBtn = find.byKey(Key('fastagkey'));
 
-        await widgetTester.pumpAndSettle();
         // -------------------------- take screenshot 2 -------------------
         // await widgetTester.pumpAndSettle(Duration(seconds: 2));
-        await binding.convertFlutterSurfaceToImage();
-        await widgetTester.pumpAndSettle();
+
+        // await widgetTester.pumpAndSettle();
         await binding.takeScreenshot('screenshot2');
 // ----------------------------- take screenshot 2 -------------------
-
+        await widgetTester.pumpAndSettle();
         await widgetTester.tap(fastagBtn);
         await widgetTester.pumpAndSettle();
-
         expect(find.text('Select To Recharge'), findsOneWidget);
         // await widgetTester.pumpAndSettle(Duration(seconds: 1));
 
@@ -94,20 +94,21 @@ void main() {
             .byWidgetPredicate(
                 (widget) => widget is Text && widget.data == "17874512789456")
             .first;
-
+        await widgetTester.pumpAndSettle();
         await widgetTester.tap(finderWalletItem);
         // await widgetTester.pump();
 
         final Finder amtCtrl = find.byType(TextFormField).last;
-        await widgetTester.pump();
+        await widgetTester.pumpAndSettle();
         await widgetTester.enterText(amtCtrl, "1520");
 
         final Finder selecAccDropdown = find.text('Select Your Account');
+        await widgetTester.pumpAndSettle();
         await widgetTester.tap(selecAccDropdown);
         // await widgetTester.pump();
 
         final Finder accItem = find.text('10000123500001').first;
-        await widgetTester.pump();
+        await widgetTester.pumpAndSettle();
         await widgetTester.tap(accItem);
         await widgetTester.pumpAndSettle();
 
@@ -116,8 +117,8 @@ void main() {
         await widgetTester.tap(submitBtn);
 
         // -------------------------- take screenshot 3 -------------------
-        await binding.convertFlutterSurfaceToImage();
-        await widgetTester.pumpAndSettle();
+
+        // await widgetTester.pumpAndSettle();
         await binding.takeScreenshot('screenshot3');
         await widgetTester.pumpAndSettle();
         expect(find.text('Review'), findsOneWidget);
@@ -131,8 +132,8 @@ void main() {
 
         // -------------------------- take screenshot 4 -------------------
         // await Future.delayed(Duration(seconds: 2));
-        await binding.convertFlutterSurfaceToImage();
-        await widgetTester.pumpAndSettle();
+
+        await widgetTester.pump();
         await binding.takeScreenshot('screenshot4');
 // ----------------------------- take screenshot 4 -------------------
 
@@ -142,21 +143,22 @@ void main() {
         String storedOTP = FFAppState().authOtp;
         await widgetTester.pump();
         await widgetTester.enterText(otpTextEditingCtrl, "$storedOTP");
+        await widgetTester.pump();
 
         // -------------------------- take screenshot 5 -------------------
 
         // await Future.delayed(Duration(seconds: 1));
         final Finder confirmAndPayBtn = find.byKey(ValueKey('authotpBTNKey'));
-        await binding.convertFlutterSurfaceToImage();
-        await widgetTester.pumpAndSettle();
+
+        // await widgetTester.pumpAndSettle();
         await binding.takeScreenshot('screenshot5');
         await widgetTester.tap(confirmAndPayBtn);
 
 // ----------------------------- take screenshot 5 -------------------
 
         // -------------------------- take screenshot 6 -------------------
-        await binding.convertFlutterSurfaceToImage();
-        await widgetTester.pumpAndSettle();
+
+        // await widgetTester.pumpAndSettle();
         await binding.takeScreenshot('screenshot6');
 // ----------------------------- take screenshot 6 -------------------
         await widgetTester.pumpAndSettle();
