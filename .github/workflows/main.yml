@@ -32,7 +32,7 @@ jobs:
         with:
           name: test_results
           path: screenshots/
-                drive.log
+                
                 
         
       # - name: Run chromedriver
