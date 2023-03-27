@@ -22,7 +22,13 @@ jobs:
       #   run: flutter doctor
         
       - name: Build iOS app
-        run: flutter build ios --release
+        run: flutter build ios --release --no-codesign
+
+      - name: Archive iOS app
+        uses: actions/upload-artifact@v2
+        with:
+          name: iOS
+          path: build/ios/iphoneos/Runner.app
       # - name: Run integration tests
       #   run: chromedriver --port=4444 --verbose & flutter drive   --driver=test_driver/integration_test.dart   --target=integration_test/loginpage_test.dart   -d web-server
       #   # env:
