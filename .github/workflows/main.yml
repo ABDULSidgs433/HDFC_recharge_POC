@@ -6,7 +6,8 @@ on:
     branches: ["recharge-poc-dev"]
 jobs:
   build:
-    runs-on: windows-latest
+    # runs-on: windows-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -17,21 +18,22 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Flutter doctor run
-        run: flutter doctor
+      # - name: Flutter doctor run
+      #   run: flutter doctor
         
-
-      - name: Run integration tests
-        run: chromedriver --port=4444 --verbose & flutter drive   --driver=test_driver/integration_test.dart   --target=integration_test/loginpage_test.dart   -d web-server
-        # env:
-        #   SCREENSHOTS_DIR: ${{ github.workspace }}/screenshots
-        #   REPORTS_DIR: ${{ github.workspace }}/reports
+      - name: Build iOS app
+        run: flutter build ios --release --no-codesign --target-platform=ios14.0
+      # - name: Run integration tests
+      #   run: chromedriver --port=4444 --verbose & flutter drive   --driver=test_driver/integration_test.dart   --target=integration_test/loginpage_test.dart   -d web-server
+      #   # env:
+      #   #   SCREENSHOTS_DIR: ${{ github.workspace }}/screenshots
+      #   #   REPORTS_DIR: ${{ github.workspace }}/reports
       
-      - name: Archive artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: test_results
-          path: screenshots/
+      # - name: Archive artifacts
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: test_results
+      #     path: screenshots/
                 
                 
         
