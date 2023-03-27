@@ -22,7 +22,7 @@ jobs:
       #   run: flutter doctor
         
       - name: Build iOS app
-        run: flutter build ios --release --no-codesign --target-platform=ios14.0
+        run: flutter build ios --release
       # - name: Run integration tests
       #   run: chromedriver --port=4444 --verbose & flutter drive   --driver=test_driver/integration_test.dart   --target=integration_test/loginpage_test.dart   -d web-server
       #   # env:
